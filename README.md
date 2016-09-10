@@ -61,8 +61,8 @@ munin:
   node:
     host_name: example-host
     allows:
-      - 10.0.0.10
-      - 10.0.0.11
+      - ^10\.0\.0\.10$
+      - ^10\.0\.0\.11$
     ignore_files:
       - ^README$
     log_level: 4
