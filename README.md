@@ -80,7 +80,7 @@ munin:
 
 #### Notice
 
-If you enabled SELinux, munin-node may not be able to start.
+If you enabled SELinux, you may not be able to start munin-node.
 
 ## License
 
