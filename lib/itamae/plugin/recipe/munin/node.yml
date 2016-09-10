@@ -1,0 +1,11 @@
+log_level: 4
+log_file: /var/log/munin-node/munin-node.log
+port: 4949
+pid_file: /var/run/munin/munin-node.pid
+background: 1
+host: '*'
+user: root
+group: root
+setsid: 1
+timeout: 1
+global_timeout: 15

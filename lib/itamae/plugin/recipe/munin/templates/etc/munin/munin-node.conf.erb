@@ -1,0 +1,71 @@
+#
+# Example config-file for munin-node
+#
+
+log_level <%= @config[:log_level] %>
+log_file <%= @config[:log_file] %>
+pid_file <%= @config[:pid_file] %>
+
+background <%= @config[:background] %>
+setsid <%= @config[:setsid] %>
+
+user <%= @config[:user] %>
+group <%= @config[:group] %>
+
+# This is the timeout for the whole transaction.
+# Units are in sec. Default is 15 min
+#
+global_timeout <%= @config[:global_timeout] %>
+
+# This is the timeout for each plugin.
+# Units are in sec. Default is 1 min
+#
+timeout <%= @config[:timeout] %>
+
+# Regexps for files to ignore
+ignore_file [\#~]$
+ignore_file DEADJOE$
+ignore_file \.bak$
+ignore_file %$
+ignore_file \.dpkg-(tmp|new|old|dist)$
+ignore_file \.rpm(save|new)$
+ignore_file \.pod$
+<% @config.fetch(:ignore_files, []).each do |ignore_file| %>
+ignore_file <%= ignore_file %>
+<% end %>
+
+# Set this if the client doesn't report the correct hostname when
+# telnetting to localhost, port 4949
+#
+<% if @config[:host_name] %>
+host_name <%= @config[:host_name] %>
+<% end %>
+
+# A list of addresses that are allowed to connect.  This must be a
+# regular expression, since Net::Server does not understand CIDR-style
+# network notation unless the perl module Net::CIDR is installed.  You
+# may repeat the allow line as many times as you'd like
+
+allow ^127\.0\.0\.1$
+allow ^::1$
+<% @config.fetch(:allows, []).each do |allow| %>
+allow <%= allow %>
+<% end %>
+
+# If you have installed the Net::CIDR perl module, you can use one or more
+# cidr_allow and cidr_deny address/mask patterns.  A connecting client must
+# match any cidr_allow, and not match any cidr_deny.  Note that a netmask
+# *must* be provided, even if it's /32
+#
+# Example:
+#
+# cidr_allow 127.0.0.1/32
+# cidr_allow 192.0.2.0/24
+# cidr_deny  192.0.2.42/32
+
+# Which address to bind to;
+host <%= @config[:host] %>
+# host 127.0.0.1
+
+# And which port
+port <%= @config[:port] %>
